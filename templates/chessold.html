@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        message {
+            height: 20px;
+            width: 900px;
+            display: flex;
+            /* justify-content: space-evenly; */
+        }
+        message div {
+            flex:1;
+            font-size: 12px;
+        }
+        main {
+            height: 1000px;
+            width: 900px;
+            border: solid 1px black;
+            box-shadow: 0px 0px 5px 5px #555;
+            /* transform: scale(0.3, 0.3); */
+        }
+        chessboard {
+            height: 900px;
+            width: 800px;
+            /* background-color: yellow; */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            border: solid 1px red;
+            margin: 50px;
+            position: relative;
+        }
+        chessboard red {
+            display: flex;
+            flex-grow: 4;
+            flex-wrap: wrap;
+        }
+        chessboard river {
+            height: 98px;
+            width: 798px;
+            display: flex;
+            flex-grow: 1;
+            border: solid 1px red;
+        }
+        chessboard black {
+            display: flex;
+            flex-grow: 4;
+            flex-wrap: wrap;
+        }
+        river div {
+            height: 98px;
+            width: 98px;
+        }
+        red div {
+            height: 98px;
+            width: 98px;
+            border: solid 1px red;
+        }
+        black div {
+            height: 98px;
+            width: 98px;
+            border: solid 1px red;
+        }
+        .costal1 {
+            background: linear-gradient(45deg, transparent 49%, red 49%, red 51%, transparent 51%);
+        }
+        .costal2 {
+            background: linear-gradient(135deg, transparent 49%, red 49%, red 51%, transparent 51%);
+        }
+        .river {
+            font-size: 60px;
+            font-weight: bolder;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .chessman {
+            height: 80px;
+            width: 80px;
+            background-color:wheat;
+            box-shadow: 0px 0px 5px 5px #888;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 65px;
+            font-weight: bolder;
+            font-family:"楷体";
+            position: absolute;
+            transition: 100ms;
+            z-index: auto;
+        }
+        .red {
+            color: red;
+        }
+        .black {
+            color: black;
+        }
+        .select {
+            background-color: rgba(107, 86, 46, 0.9);
+            box-shadow: 0px 0px 10px 10px #888;
+        }
+        .position {
+            height: 80px;
+            width: 80px;
+            position: absolute;
+            border-radius: 50%;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <message>
+        <div id="message1"></div>
+        <div id="message2">红方先行</div>
+        <div id="message3"></div>
+    </message>
+    <main>
+       <chessboard>
+           <red>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div class="costal1"></div>
+               <div class="costal2"></div>
+               <div></div>
+               <div></div>
+               <div></div>
+
+               <div></div>
+               <div></div>
+               <div></div>
+               <div class="costal2"></div>
+               <div class="costal1"></div>
+               <div></div>
+               <div></div>
+               <div></div>
+
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+           </red>
+           <river>
+               <div></div>
+               <div class="river">楚</div>
+               <div class="river">河</div>
+               <div></div>
+               <div></div>
+               <div class="river">汉</div>
+               <div class="river">界</div>
+               <div></div>
+           </river>
+           <black>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+
+               <div></div>
+               <div></div>
+               <div></div>
+               <div class="costal1"></div>
+               <div class="costal2"></div>
+               <div></div>
+               <div></div>
+               <div></div>
+
+               <div></div>
+               <div></div>
+               <div></div>
+               <div class="costal2"></div>
+               <div class="costal1"></div>
+               <div></div>
+               <div></div>
+               <div></div>
+           </black>
+            <div class="chessman red" id="rj1" style="top:-40px; left:-40px">車</div>
+            <div class="chessman red" id="rm1" style="top:-40px; left:60px">馬</div>
+            <div class="chessman red" id="rx1" style="top:-40px; left:160px">相</div>
+            <div class="chessman red" id="rs1" style="top:-40px; left:260px">仕</div>
+            <div class="chessman red" id="rl1" style="top:-40px; left:360px">帅</div>
+            <div class="chessman red" id="rs2" style="top:-40px; left:460px">仕</div>
+            <div class="chessman red" id="rx2" style="top:-40px; left:560px">相</div>
+            <div class="chessman red" id="rm2" style="top:-40px; left:660px">馬</div>
+            <div class="chessman red" id="rj2" style="top:-40px; left:760px">車</div>
+            <div class="chessman red" id="rp1" style="top:160px; left:60px">炮</div>
+            <div class="chessman red" id="rp2" style="top:160px; left:660px">炮</div>
+            <div class="chessman red" id="rb1" style="top:260px; left:-40px">兵</div>
+            <div class="chessman red" id="rb2" style="top:260px; left:160px">兵</div>
+            <div class="chessman red" id="rb3" style="top:260px; left:360px">兵</div>
+            <div class="chessman red" id="rb4" style="top:260px; left:560px">兵</div>
+            <div class="chessman red" id="rb5" style="top:260px; left:760px">兵</div>
+
+            <div class="chessman black" id="bb1" style="top:560px; left:-40px">卒</div>
+            <div class="chessman black" id="bb2" style="top:560px; left:160px">卒</div>
+            <div class="chessman black" id="bb3" style="top:560px; left:360px">卒</div>
+            <div class="chessman black" id="bb4" style="top:560px; left:560px">卒</div>
+            <div class="chessman black" id="bb5" style="top:560px; left:760px">卒</div>
+            <div class="chessman black" id="bp1" style="top:660px; left:60px">炮</div>
+            <div class="chessman black" id="bp2" style="top:660px; left:660px">炮</div>
+            <div class="chessman black" id="bj1" style="top:860px; left:-40px">車</div>
+            <div class="chessman black" id="bm1" style="top:860px; left: 60px">馬</div>
+            <div class="chessman black" id="bx1" style="top:860px; left:160px">象</div>
+            <div class="chessman black" id="bs1" style="top:860px; left:260px">士</div>
+            <div class="chessman black" id="bl1" style="top:860px; left:360px">将</div>
+            <div class="chessman black" id="bs2" style="top:860px; left:460px">士</div>
+            <div class="chessman black" id="bx2" style="top:860px; left:560px">象</div>
+            <div class="chessman black" id="bm2" style="top:860px; left:660px">馬</div>
+            <div class="chessman black" id="bj2" style="top:860px; left:760px">車</div>
+
+            <div class="position" id="p00" style="top:-40px; left:-40px"></div>
+            <div class="position" id="p01" style="top:-40px; left: 60px"></div>
+            <div class="position" id="p02" style="top:-40px; left:160px"></div>
+            <div class="position" id="p03" style="top:-40px; left:260px"></div>
+            <div class="position" id="p04" style="top:-40px; left:360px"></div>
+            <div class="position" id="p05" style="top:-40px; left:460px"></div>
+            <div class="position" id="p06" style="top:-40px; left:560px"></div>
+            <div class="position" id="p07" style="top:-40px; left:660px"></div>
+            <div class="position" id="p08" style="top:-40px; left:760px"></div>
+            <div class="position" id="p09" style="top: 60px; left:-40px"></div>
+            <div class="position" id="p10" style="top: 60px; left: 60px"></div>
+            <div class="position" id="p11" style="top: 60px; left:160px"></div>
+            <div class="position" id="p12" style="top: 60px; left:260px"></div>
+            <div class="position" id="p13" style="top: 60px; left:360px"></div>
+            <div class="position" id="p14" style="top: 60px; left:460px"></div>
+            <div class="position" id="p15" style="top: 60px; left:560px"></div>
+            <div class="position" id="p16" style="top: 60px; left:660px"></div>
+            <div class="position" id="p17" style="top: 60px; left:760px"></div>
+            <div class="position" id="p18" style="top:160px; left:-40px"></div>
+            <div class="position" id="p19" style="top:160px; left: 60px"></div>
+            <div class="position" id="p20" style="top:160px; left:160px"></div>
+            <div class="position" id="p21" style="top:160px; left:260px"></div>
+            <div class="position" id="p22" style="top:160px; left:360px"></div>
+            <div class="position" id="p23" style="top:160px; left:460px"></div>
+            <div class="position" id="p24" style="top:160px; left:560px"></div>
+            <div class="position" id="p25" style="top:160px; left:660px"></div>
+            <div class="position" id="p26" style="top:160px; left:760px"></div>
+            <div class="position" id="p27" style="top:260px; left:-40px"></div>
+            <div class="position" id="p28" style="top:260px; left: 60px"></div>
+            <div class="position" id="p29" style="top:260px; left:160px"></div>
+            <div class="position" id="p30" style="top:260px; left:260px"></div>
+            <div class="position" id="p31" style="top:260px; left:360px"></div>
+            <div class="position" id="p32" style="top:260px; left:460px"></div>
+            <div class="position" id="p33" style="top:260px; left:560px"></div>
+            <div class="position" id="p34" style="top:260px; left:660px"></div>
+            <div class="position" id="p35" style="top:260px; left:760px"></div>
+            <div class="position" id="p36" style="top:360px; left:-40px"></div>
+            <div class="position" id="p37" style="top:360px; left: 60px"></div>
+            <div class="position" id="p38" style="top:360px; left:160px"></div>
+            <div class="position" id="p39" style="top:360px; left:260px"></div>
+            <div class="position" id="p40" style="top:360px; left:360px"></div>
+            <div class="position" id="p41" style="top:360px; left:460px"></div>
+            <div class="position" id="p42" style="top:360px; left:560px"></div>
+            <div class="position" id="p43" style="top:360px; left:660px"></div>
+            <div class="position" id="p44" style="top:360px; left:760px"></div>
+            <div class="position" id="p45" style="top:460px; left:-40px"></div>
+            <div class="position" id="p46" style="top:460px; left: 60px"></div>
+            <div class="position" id="p47" style="top:460px; left:160px"></div>
+            <div class="position" id="p48" style="top:460px; left:260px"></div>
+            <div class="position" id="p49" style="top:460px; left:360px"></div>
+            <div class="position" id="p50" style="top:460px; left:460px"></div>
+            <div class="position" id="p51" style="top:460px; left:560px"></div>
+            <div class="position" id="p52" style="top:460px; left:660px"></div>
+            <div class="position" id="p53" style="top:460px; left:760px"></div>
+            <div class="position" id="p54" style="top:560px; left:-40px"></div>
+            <div class="position" id="p55" style="top:560px; left: 60px"></div>
+            <div class="position" id="p56" style="top:560px; left:160px"></div>
+            <div class="position" id="p57" style="top:560px; left:260px"></div>
+            <div class="position" id="p58" style="top:560px; left:360px"></div>
+            <div class="position" id="p59" style="top:560px; left:460px"></div>
+            <div class="position" id="p60" style="top:560px; left:560px"></div>
+            <div class="position" id="p61" style="top:560px; left:660px"></div>
+            <div class="position" id="p62" style="top:560px; left:760px"></div>
+            <div class="position" id="p63" style="top:660px; left:-40px"></div>
+            <div class="position" id="p64" style="top:660px; left: 60px"></div>
+            <div class="position" id="p65" style="top:660px; left:160px"></div>
+            <div class="position" id="p66" style="top:660px; left:260px"></div>
+            <div class="position" id="p67" style="top:660px; left:360px"></div>
+            <div class="position" id="p68" style="top:660px; left:460px"></div>
+            <div class="position" id="p69" style="top:660px; left:560px"></div>
+            <div class="position" id="p70" style="top:660px; left:660px"></div>
+            <div class="position" id="p71" style="top:660px; left:760px"></div>
+            <div class="position" id="p72" style="top:760px; left:-40px"></div>
+            <div class="position" id="p73" style="top:760px; left: 60px"></div>
+            <div class="position" id="p74" style="top:760px; left:160px"></div>
+            <div class="position" id="p75" style="top:760px; left:260px"></div>
+            <div class="position" id="p76" style="top:760px; left:360px"></div>
+            <div class="position" id="p77" style="top:760px; left:460px"></div>
+            <div class="position" id="p78" style="top:760px; left:560px"></div>
+            <div class="position" id="p79" style="top:760px; left:660px"></div>
+            <div class="position" id="p80" style="top:760px; left:760px"></div>
+            <div class="position" id="p81" style="top:860px; left:-40px"></div>
+            <div class="position" id="p82" style="top:860px; left: 60px"></div>
+            <div class="position" id="p83" style="top:860px; left:160px"></div>
+            <div class="position" id="p84" style="top:860px; left:260px"></div>
+            <div class="position" id="p85" style="top:860px; left:360px"></div>
+            <div class="position" id="p86" style="top:860px; left:460px"></div>
+            <div class="position" id="p87" style="top:860px; left:560px"></div>
+            <div class="position" id="p88" style="top:860px; left:660px"></div>
+            <div class="position" id="p89" style="top:860px; left:760px"></div>
+       </chessboard>
+   </main> 
+   <script type="text/javascript" src="static/chess.js"></script>
+   <script type="text/javascript" src="{{ jsName }}"></script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            width: 90vw;
+            height: 10vw;
+        }
+        .message {
+            width: 90vw;
+            height: 5vw;
+            display: flex;
+            justify-content: space-evenly;
+            margin: 1vw;
+        }
+        .message div {
+            flex: 1 1;
+            font-family: 楷体;
+            font-size: 3vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .chessboard {
+            width: 90vw;
+            height: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: solid 1px black;
+            box-shadow: 0px 0px 5px 5px #555;
+        }
+        .chessman {
+            width: 8vw;
+            height: 8vw;
+            font-size: 6.5vw;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            background-color:wheat;
+            box-shadow: 0px 0px 5px 5px #888;
+            font-weight: bolder;
+            font-family:"楷体";
+            transition: 100ms;
+            z-index: 0;
+        }
+        .position {
+            width: 8vw;
+            height: 8vw;
+            position: absolute;
+            border-radius: 50%;
+            z-index: 999;
+        }
+        .red {
+            color: red;
+        }
+        .black {
+            color: black;
+        }
+        .select {
+            background-color: rgba(107, 86, 46, 0.9);
+            box-shadow: 0px 0px 10px 10px #888;
+        }
+        .river {
+            font-size: 6vw;;
+            font-weight: bolder;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .costal1 {
+            background: linear-gradient(45deg, transparent 49%, red 49%, red 51%, transparent 51%);
+        }
+        .costal2 {
+            background: linear-gradient(135deg, transparent 49%, red 49%, red 51%, transparent 51%);
+        }
+        main {
+            width: 80vw;
+            height: 90vw;
+            display: flex;
+            flex-direction: column;
+            border: solid 1px red;
+            position: relative;
+        }
+        main div {
+            display: flex;
+            flex: 1 1 100%;
+        }
+        main .row:nth-child(-n+4) .col{
+            border: solid 1px red;
+        }
+        main .row:nth-child(n+6) .col{
+            border: solid 1px red;
+        }
+        main .row:nth-child(5) {
+            border: solid 1px red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+    </header>
+    <div class="message">
+        <div id="message1"></div>
+        <div id="message2">红方先行</div>
+        <div id="message3"></div>
+    </div>
+    <div class="chessboard">
+        <main>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col costal1"></div>
+                <div class="col costal2"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col costal2"></div>
+                <div class="col costal1"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col river">楚</div>
+                <div class="col river">河</div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col river">汉</div>
+                <div class="col river">界</div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col costal1"></div>
+                <div class="col costal2"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col costal2"></div>
+                <div class="col costal1"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="chessman red" id="rj1" style="top:-4vw; left:-4vw">車</div>
+            <div class="chessman red" id="rm1" style="top:-4vw; left: 6vw">馬</div>
+            <div class="chessman red" id="rx1" style="top:-4vw; left:16vw">相</div>
+            <div class="chessman red" id="rs1" style="top:-4vw; left:26vw">仕</div>
+            <div class="chessman red" id="rl1" style="top:-4vw; left:36vw">帅</div>
+            <div class="chessman red" id="rs2" style="top:-4vw; left:46vw">仕</div>
+            <div class="chessman red" id="rx2" style="top:-4vw; left:56vw">相</div>
+            <div class="chessman red" id="rm2" style="top:-4vw; left:66vw">馬</div>
+            <div class="chessman red" id="rj2" style="top:-4vw; left:76vw">車</div>
+            <div class="chessman red" id="rp1" style="top:16vw; left: 6vw">炮</div>
+            <div class="chessman red" id="rp2" style="top:16vw; left:66vw">炮</div>
+            <div class="chessman red" id="rb1" style="top:26vw; left:-4vw">兵</div>
+            <div class="chessman red" id="rb2" style="top:26vw; left:16vw">兵</div>
+            <div class="chessman red" id="rb3" style="top:26vw; left:36vw">兵</div>
+            <div class="chessman red" id="rb4" style="top:26vw; left:56vw">兵</div>
+            <div class="chessman red" id="rb5" style="top:26vw; left:76vw">兵</div>
+
+            <div class="chessman black" id="bb1" style="top:56vw; left:-4vw">卒</div>
+            <div class="chessman black" id="bb2" style="top:56vw; left:16vw">卒</div>
+            <div class="chessman black" id="bb3" style="top:56vw; left:36vw">卒</div>
+            <div class="chessman black" id="bb4" style="top:56vw; left:56vw">卒</div>
+            <div class="chessman black" id="bb5" style="top:56vw; left:76vw">卒</div>
+            <div class="chessman black" id="bp1" style="top:66vw; left: 6vw">炮</div>
+            <div class="chessman black" id="bp2" style="top:66vw; left:66vw">炮</div>
+            <div class="chessman black" id="bj1" style="top:86vw; left:-4vw">車</div>
+            <div class="chessman black" id="bm1" style="top:86vw; left: 6vw">馬</div>
+            <div class="chessman black" id="bx1" style="top:86vw; left:16vw">象</div>
+            <div class="chessman black" id="bs1" style="top:86vw; left:26vw">士</div>
+            <div class="chessman black" id="bl1" style="top:86vw; left:36vw">将</div>
+            <div class="chessman black" id="bs2" style="top:86vw; left:46vw">士</div>
+            <div class="chessman black" id="bx2" style="top:86vw; left:56vw">象</div>
+            <div class="chessman black" id="bm2" style="top:86vw; left:66vw">馬</div>
+            <div class="chessman black" id="bj2" style="top:86vw; left:76vw">車</div>
+
+            <div class="position" id="p00" style="top:-4vw; left:-4vw"></div>
+            <div class="position" id="p01" style="top:-4vw; left: 6vw"></div>
+            <div class="position" id="p02" style="top:-4vw; left:16vw"></div>
+            <div class="position" id="p03" style="top:-4vw; left:26vw"></div>
+            <div class="position" id="p04" style="top:-4vw; left:36vw"></div>
+            <div class="position" id="p05" style="top:-4vw; left:46vw"></div>
+            <div class="position" id="p06" style="top:-4vw; left:56vw"></div>
+            <div class="position" id="p07" style="top:-4vw; left:66vw"></div>
+            <div class="position" id="p08" style="top:-4vw; left:76vw"></div>
+            <div class="position" id="p09" style="top: 6vw; left:-4vw"></div>
+            <div class="position" id="p10" style="top: 6vw; left: 6vw"></div>
+            <div class="position" id="p11" style="top: 6vw; left:16vw"></div>
+            <div class="position" id="p12" style="top: 6vw; left:26vw"></div>
+            <div class="position" id="p13" style="top: 6vw; left:36vw"></div>
+            <div class="position" id="p14" style="top: 6vw; left:46vw"></div>
+            <div class="position" id="p15" style="top: 6vw; left:56vw"></div>
+            <div class="position" id="p16" style="top: 6vw; left:66vw"></div>
+            <div class="position" id="p17" style="top: 6vw; left:76vw"></div>
+            <div class="position" id="p18" style="top:16vw; left:-4vw"></div>
+            <div class="position" id="p19" style="top:16vw; left: 6vw"></div>
+            <div class="position" id="p20" style="top:16vw; left:16vw"></div>
+            <div class="position" id="p21" style="top:16vw; left:26vw"></div>
+            <div class="position" id="p22" style="top:16vw; left:36vw"></div>
+            <div class="position" id="p23" style="top:16vw; left:46vw"></div>
+            <div class="position" id="p24" style="top:16vw; left:56vw"></div>
+            <div class="position" id="p25" style="top:16vw; left:66vw"></div>
+            <div class="position" id="p26" style="top:16vw; left:76vw"></div>
+            <div class="position" id="p27" style="top:26vw; left:-4vw"></div>
+            <div class="position" id="p28" style="top:26vw; left: 6vw"></div>
+            <div class="position" id="p29" style="top:26vw; left:16vw"></div>
+            <div class="position" id="p30" style="top:26vw; left:26vw"></div>
+            <div class="position" id="p31" style="top:26vw; left:36vw"></div>
+            <div class="position" id="p32" style="top:26vw; left:46vw"></div>
+            <div class="position" id="p33" style="top:26vw; left:56vw"></div>
+            <div class="position" id="p34" style="top:26vw; left:66vw"></div>
+            <div class="position" id="p35" style="top:26vw; left:76vw"></div>
+            <div class="position" id="p36" style="top:36vw; left:-4vw"></div>
+            <div class="position" id="p37" style="top:36vw; left: 6vw"></div>
+            <div class="position" id="p38" style="top:36vw; left:16vw"></div>
+            <div class="position" id="p39" style="top:36vw; left:26vw"></div>
+            <div class="position" id="p40" style="top:36vw; left:36vw"></div>
+            <div class="position" id="p41" style="top:36vw; left:46vw"></div>
+            <div class="position" id="p42" style="top:36vw; left:56vw"></div>
+            <div class="position" id="p43" style="top:36vw; left:66vw"></div>
+            <div class="position" id="p44" style="top:36vw; left:76vw"></div>
+            <div class="position" id="p45" style="top:46vw; left:-4vw"></div>
+            <div class="position" id="p46" style="top:46vw; left: 6vw"></div>
+            <div class="position" id="p47" style="top:46vw; left:16vw"></div>
+            <div class="position" id="p48" style="top:46vw; left:26vw"></div>
+            <div class="position" id="p49" style="top:46vw; left:36vw"></div>
+            <div class="position" id="p50" style="top:46vw; left:46vw"></div>
+            <div class="position" id="p51" style="top:46vw; left:56vw"></div>
+            <div class="position" id="p52" style="top:46vw; left:66vw"></div>
+            <div class="position" id="p53" style="top:46vw; left:76vw"></div>
+            <div class="position" id="p54" style="top:56vw; left:-4vw"></div>
+            <div class="position" id="p55" style="top:56vw; left: 6vw"></div>
+            <div class="position" id="p56" style="top:56vw; left:16vw"></div>
+            <div class="position" id="p57" style="top:56vw; left:26vw"></div>
+            <div class="position" id="p58" style="top:56vw; left:36vw"></div>
+            <div class="position" id="p59" style="top:56vw; left:46vw"></div>
+            <div class="position" id="p60" style="top:56vw; left:56vw"></div>
+            <div class="position" id="p61" style="top:56vw; left:66vw"></div>
+            <div class="position" id="p62" style="top:56vw; left:76vw"></div>
+            <div class="position" id="p63" style="top:66vw; left:-4vw"></div>
+            <div class="position" id="p64" style="top:66vw; left: 6vw"></div>
+            <div class="position" id="p65" style="top:66vw; left:16vw"></div>
+            <div class="position" id="p66" style="top:66vw; left:26vw"></div>
+            <div class="position" id="p67" style="top:66vw; left:36vw"></div>
+            <div class="position" id="p68" style="top:66vw; left:46vw"></div>
+            <div class="position" id="p69" style="top:66vw; left:56vw"></div>
+            <div class="position" id="p70" style="top:66vw; left:66vw"></div>
+            <div class="position" id="p71" style="top:66vw; left:76vw"></div>
+            <div class="position" id="p72" style="top:76vw; left:-4vw"></div>
+            <div class="position" id="p73" style="top:76vw; left: 6vw"></div>
+            <div class="position" id="p74" style="top:76vw; left:16vw"></div>
+            <div class="position" id="p75" style="top:76vw; left:26vw"></div>
+            <div class="position" id="p76" style="top:76vw; left:36vw"></div>
+            <div class="position" id="p77" style="top:76vw; left:46vw"></div>
+            <div class="position" id="p78" style="top:76vw; left:56vw"></div>
+            <div class="position" id="p79" style="top:76vw; left:66vw"></div>
+            <div class="position" id="p80" style="top:76vw; left:76vw"></div>
+            <div class="position" id="p81" style="top:86vw; left:-4vw"></div>
+            <div class="position" id="p82" style="top:86vw; left: 6vw"></div>
+            <div class="position" id="p83" style="top:86vw; left:16vw"></div>
+            <div class="position" id="p84" style="top:86vw; left:26vw"></div>
+            <div class="position" id="p85" style="top:86vw; left:36vw"></div>
+            <div class="position" id="p86" style="top:86vw; left:46vw"></div>
+            <div class="position" id="p87" style="top:86vw; left:56vw"></div>
+            <div class="position" id="p88" style="top:86vw; left:66vw"></div>
+            <div class="position" id="p89" style="top:86vw; left:76vw"></div>
+        </main>
+    </div>
+   <script type="text/javascript" src="static/chess.js"></script>
+   <script type="text/javascript" src="{{ jsName }}"></script>
+</body>
+</html>
